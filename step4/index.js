@@ -4,33 +4,39 @@ window.onkeydown = function(e){
 	var d3 = document.getElementById('judge');
 	
 	// あなたの手
-	var a = e.keyCode;
-	a = a - 48;
+	var your_hand = e.keyCode;
+    console.log(your_hand)
+    rock = 49
+    scissor = 50
+    paper = 51
 	
-	if (a == 1) {
+    if (your_hand == rock) {
 		d1.innerHTML = '<img src="rock.jpg" />';//ぐー
-	} else if (a == 2) {
+	} else if (your_hand == scissor) {
 		d1.innerHTML = '<img src="scissors.jpg" />';//ちょき
 	} else {
 		d1.innerHTML = '<img src="paper.jpg" />';//ぱー
 	}
 	
 	// コンピュータの手
-	var b = Math.random() * 3;
-	b = Math.ceil(b);
+	var random = Math.random() * 3;
+	computers_hand = parseInt(49 + random) ;
+    console.log(computers_hand)
 	
-	if (b == 1) {
+	if (computers_hand == rock) {
 		d2.innerHTML = '<img src="rock.jpg" />';//ぐー
-	} else if (b == 2) {
+	} else if ( computers_hand== scissor) {
 		d2.innerHTML = '<img src="scissors.jpg" />';//ちょき
 	} else {
 		d2.innerHTML = '<img src="paper.jpg" />';//ぱー
 	}
 	
 	// どっちが勝った?
-	if (a == b) {
+	if (your_hand == computers_hand) {
 		d3.innerHTML = 'あいこ!';
-	} else if ((a == 1 && b == 2) || (a == 2 && b == 3) || (a == 3 && b == 1)) {
+	} else if ((your_hand == rock && computers_hand == scissor) ||
+            (your_hand == scissor && computers_hand == paper) || 
+            (your_hand == paper && computers_hand == rock)) {
 		d3.innerHTML = 'あなたのかち!';
 	} else {
 		d3.innerHTML = 'コンピュータのかち!';
